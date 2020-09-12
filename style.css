@@ -1,0 +1,23 @@
+
+header {
+    background-color: rgb(71, 71, 75);
+    color: white;
+    padding-bottom: 2%;
+    margin-left: -1.5%;
+    margin-right: -1.5%;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.jumbotron {
+    background-color: whitesmoke;
+}
+
+.list-group-item {
+    width: 250px;
+    display: inline-block;
+}
+
