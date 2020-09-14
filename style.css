@@ -8,11 +8,11 @@ header {
     text-align: center;
 }
 
-h3 {
+h2 {
     text-align: center;
 }
 
-.jumbotron {
+.jumbotron-fluid {
     background-color: whitesmoke;
 }
 
@@ -21,3 +21,17 @@ h3 {
     display: inline-block;
 }
 
+.red {
+background-color: red;
+width: 10%;
+}
+
+.green {
+background-color: green;
+width: 10%;
+}
+
+.yellow {
+    background-color: yellow;
+    width: 10%;
+}
