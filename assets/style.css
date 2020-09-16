@@ -24,14 +24,21 @@ h2 {
 .red {
 background-color: red;
 width: 10%;
+color: white;
 }
 
 .green {
 background-color: green;
 width: 10%;
+color: white;
 }
 
 .yellow {
     background-color: yellow;
     width: 10%;
+}
+
+.hide {
+    border: none;
+    background: none;
 }

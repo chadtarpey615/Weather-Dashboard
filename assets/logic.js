@@ -8,34 +8,29 @@ $(".hide").hide()
 
 
 
+searchCity("nashville");
 
 function cityInfo() {
   let city = $("#city-input").val()
   searchCity(city);
 }
 
-// function repeatCity(e) {
-//   e.preventDefault();
-//   $("#new-input").each(function(){
-//     let city = $("#new-input").text();
-//     searchCity(city);
-//     console.log($("#new").text());
-//   })
-  
-// }
+
+
+
 
 function repeatCity(e) {
   e.preventDefault();
-  for(var i = 0; i < cities.length; i++){
-    let city = cities
-    searchCity(city[i]);
-  }
+  //$("#new").text("");
+  let repeat =  this.innerHTML
+  searchCity(repeat);
+  console.log(repeat);
  
 }
 
     
 
-// }
+
 
 
 function searchCity(city) {
@@ -72,23 +67,24 @@ function searchCity(city) {
     //console.log(response.coord.lon);
 
 
-    var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude={part}&appid=2f680f0cc7fc4c9096f0c3c8c7e8a2e4"
+    var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + long + "&exclude={part}&units=imperial&appid=2f680f0cc7fc4c9096f0c3c8c7e8a2e4"
 
   $.ajax({
     url: uvURL,
     method: "GET"
   }).then(function(response){
-    console.log(response);
+    //console.log(response);
     var uvRays = $("<h4>").text("UV Index:")
     var uvIndex = $("<h4>").text(response.current.uvi);
 
     var index = uvIndex.text();
-    console.log(uvIndex.text())
-   uvIndex.removeClass("green", "yellow", "red");
+
     if (index <= 3) {
       uvIndex.addClass("green")
+
     } else if(index >= 3 && index <= 8) {
       uvIndex.addClass("yellow")
+
     }else {
       uvIndex.addClass("red");
     }
@@ -113,7 +109,7 @@ function searchCity(city) {
 
 
       //console.log(response.list[i].dt_txt);
-      $("#card-" + k).append($("<h4>").text(city));
+      $("#card-" + k).append($("<h4>").text(city.toUpperCase()));
 
       $("#card-" + k).append($("<p>").text(response.list[i].dt_txt));
 
@@ -145,7 +141,7 @@ function saveCity(event) {
   var listCity = $("#city-input").val();
 
   cities.push(listCity);
-  localStorage.setItem(newCity, cities);
+  localStorage.setItem("cities", JSON.stringify(cities));
 }
 
 
@@ -153,14 +149,26 @@ function saveCity(event) {
 function showCitys() {
   $("#city-input").each(function () {
     var key = $("#city-input").val();
-    var newInput = $('<button class="list-group-item" id="new" >');
+    var newInput = $('<button class="list-group-item" id="button">');
     //newInput.addClass("well")
-    newInput.text($(this).val());
+    newInput.text($(this).val().toUpperCase());
     $("#new-input").append(newInput);
 
   });
 
 }
+
+function history(storage) {
+  if (storage.length === null){
+    return
+  }
+for (i = 0; i < storage.length; i++) {
+  cities.push(storage[i])
+}
+showCitys();
+}
+
+//history(localStorage.getItem("cities")) ;
 
 // pull items out of local storage
 
@@ -178,4 +186,4 @@ function showCitys() {
 $("#add-city").on("click", cityInfo);
 $("#add-city").on("click", showCitys);
 $("#add-city").on("click", saveCity);
-$("#new-input").on("click", repeatCity);
+$(document).on("click", "#button", repeatCity);
