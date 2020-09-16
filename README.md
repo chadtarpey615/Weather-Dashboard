@@ -54,7 +54,7 @@ Weather
 
 ---
 ## How To Use
-- Visit  https://chadtarpey615.github.io/work-day-scheduler/
+- Visit   https://chadtarpey615.github.io/Weather-Dashboard/
 - Google Chrome or any Web Browser
 ---
 ## References
